@@ -26,14 +26,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware(['api'])->group(function ($router) {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::get('me', [AuthController::class, 'me'])->middleware('log.route');
 
     Route::post('register', [RegistrationController::class, 'register']);
     Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
-    Route::post('password/email', [ForgotPasswordController::class, 'forgot']);
-    Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
 
     Route::patch('user/profile', [UserController::class, 'updateProfile']);
 });
